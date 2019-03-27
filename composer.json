@@ -3,6 +3,6 @@
         "phpunit/phpunit": "^8"
     },
     "scripts": {
-        "test": "phpunit test --bootstrap=test/bootstrap.php"
+        "test": "phpunit"
     }
 }
