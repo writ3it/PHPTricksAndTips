@@ -6,12 +6,12 @@
  * Time: 16:50
  */
 
-/** @var array $rows */
+/** @var array $data */
 
 ?>
 <ul>
 
-<?php foreach($rows as $row): ?>
+<?php foreach($data as $row): ?>
     <li><?= $row; ?></li>
 <?php endforeach; ?>
 
