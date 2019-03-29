@@ -16,7 +16,9 @@ library(reshape2)
 Copyright (c) 1997-2018 The PHP Group
 Zend Engine v3.3.3, Copyright (c) 1998-2018 Zend Technologies
     with Zend OPcache v7.3.3-1+ubuntu18.04.1+deb.sury.org+1, Copyright (c) 1999-2018, by Zend Technologies
-    
+### Clock
+To measure execution time 'hrtime()' PHP function used which is hight resolution timer.
+
 ## Methods
 ### Static call
 Method that found at legacy code by member of polish php community.
@@ -81,4 +83,10 @@ drawChart(data,"Trends",geom_smooth)
 ```
 
 ## Conclusion
+```{r conclusion, echo=FALSE}
+lastRow <- data %>% tail(1) %>% mutate(call=format(round(call/no,2),nsmall=2), reflection=format(round(reflection/no,2),nsmall=2), unzip=format(round(unzip/no,2),nsmall=2))
+
+```
+Average time of execution: reflection = `r lastRow$reflection` ns, static call = `r lastRow$call` ns, unpack = `r lastRow$unzip` ns.
+
 The most performance way is to use splat operator.
