@@ -4,5 +4,10 @@
     },
     "scripts": {
         "test": "phpunit"
+    },
+    "autoload": {
+        "psr-4": {
+            "Demo\\Utility\\": "Utility/"
+        }
     }
 }
