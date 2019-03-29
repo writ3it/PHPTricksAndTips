@@ -18,13 +18,28 @@ class ProfilerTest extends TestCase
         $profiler->begin('block');
         sleep(1);
         $profiler->end();
-        $this->assertGreaterThan(1,$profiler->getBlockTime('block'));
+        $this->assertGreaterThan(1000000000,$profiler->getBlockTime('block'));
+        $this->assertLessThan(1500000000, $profiler->getBlockTime('block'));
     }
     public function test_time_measuring_2(){
         $profiler = new Profiler();
         $profiler->begin('block');
         sleep(2);
         $profiler->end();
-        $this->assertGreaterThan(2,$profiler->getBlockTime('block'));
+        $this->assertGreaterThan(2000000000,$profiler->getBlockTime('block'));
+        $this->assertLessThan(2500000000, $profiler->getBlockTime('block'));
+    }
+    public function test_time_reuse(){
+        $profiler = new Profiler();
+        $profiler->begin('block');
+        sleep(1);
+        $profiler->end();
+        $this->assertGreaterThan(1000000000,$profiler->getBlockTime('block'));
+        $this->assertLessThan(1500000000, $profiler->getBlockTime('block'));
+        $profiler->begin('block');
+        sleep(2);
+        $profiler->end();
+        $this->assertGreaterThan(2000000000,$profiler->getBlockTime('block'));
+        $this->assertLessThan(2500000000, $profiler->getBlockTime('block'));
     }
 }
