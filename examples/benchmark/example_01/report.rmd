@@ -1,0 +1,76 @@
+---
+title: "benchmark/example_01"
+author: "writ3it"
+date: "29 marca 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE,echo=FALSE}
+library(ggplot2)
+library(dplyr)
+library(reshape2)
+```
+
+# Performance comparison of object creation with "variable" count of arguments
+## Methods
+### Static call
+Method that found at legacy code by member of polish php community.
+```php
+function call($argv, $args){
+    $class = Foo::class;
+    switch($argv){
+        case 0:
+            return new $class();
+        case 1:
+            return new $class($args[0]);
+        case 2:
+            return new $class($args[0],$args[1]);
+        case 3:
+            return new $class($args[0],$args[1],$args[2]);
+        case 4:
+            return new $class($args[0],$args[1],$args[2],$args[3]);
+        case 5:
+            return new $class($args[0],$args[1],$args[2],$args[3],$args[4]);
+        case 6:
+            return new $class($args[0],$args[1],$args[2],$args[3],$args[4],$args[5]);
+        case 7:
+            return new $class($args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6]);
+        case 8:
+            return new $class($args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6],$args[7]);
+    };
+    return ;
+}
+```
+### Reflection
+Nobody like reflection because it's very slow.
+```php
+    $reflect  = new ReflectionClass(Foo::class);
+    return $reflect->newInstanceArgs($args);
+```
+### Unpack (splat operator)
+Splat operator tells interpreter to use as next arguments correspondings element in array.
+```php
+    $method = Foo::class;
+    return new $method(...$args);
+```
+## Comparison charts
+```{r chart, echo=FALSE,warning=FALSE,message=FALSE, results='hide'}
+data <- as.data.frame(read.csv(file="data.csv", header=TRUE, sep=","))
+
+drawChart <- function(data,title,type){
+  data %>% ggplot(aes(no, y=value, color=variable)) +
+        type(aes(y=call, col="static call")) + 
+        type(aes(y=reflection, col="reflection")) +
+        type(aes(y=unzip, col="unpack")) +
+        ggtitle(title) + 
+        xlab("Number of repeats") +
+        ylab("Time [ns]") +
+        labs(color='Method') 
+        
+}
+
+drawChart(data,"Raw data",geom_line)
+```
+```{r chart2, echo=FALSE,results='hide'}
+drawChart(data,"Trends",geom_smooth)
+```

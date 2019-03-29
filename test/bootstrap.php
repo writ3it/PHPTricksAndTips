@@ -7,7 +7,7 @@
  */
 
 define('TESTDIR',dirname(__FILE__));
-define('EXAMPLESDIR',realpath(TESTDIR.'/../'));
+define('EXAMPLESDIR',realpath(TESTDIR.'/../examples/'));
 define('DS', DIRECTORY_SEPARATOR);
 
 
