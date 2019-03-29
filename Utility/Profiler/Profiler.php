@@ -14,6 +14,7 @@ class Profiler
 
     private $currentBlock;
     private $tree;
+    private $_stop;
 
     function __construct()
     {
@@ -31,6 +32,7 @@ class Profiler
 
     public function end()
     {
+        $this->_stop = $this->getTime();
         $this->setStop($this->currentBlock);
     }
 
@@ -59,6 +61,10 @@ class Profiler
             $this->end();
         }
         return $this->tree;
+    }
+
+    public function _getStopTime(){
+        return $this->_stop;
     }
 
     private function createBlock(string $currentBlock)
@@ -132,7 +138,7 @@ class Profiler
 
             public function Run(array &$tree, ?string $currentBlock, string $path = '')
             {
-             $tree['stop'] = $this->that->getTime();
+             $tree['stop'] = $this->that->_getStopTime();
              $tree['time_ns'] = $tree['stop'] - $tree['start'];
              $path = substr($path, 0, strrpos($path,'.'));
              $this->that->setCurrentBlock($path);
