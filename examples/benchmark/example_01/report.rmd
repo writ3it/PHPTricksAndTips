@@ -79,3 +79,6 @@ drawChart(data,"Raw data",geom_line)
 ```{r chart2, echo=FALSE,results='hide'}
 drawChart(data,"Trends",geom_smooth)
 ```
+
+## Conclusion
+The most performance way is to use splat operator.
