@@ -12,6 +12,11 @@ library(reshape2)
 ```
 
 # Performance comparison of object creation with "variable" count of arguments
+### PHP Version
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.3.3, Copyright (c) 1998-2018 Zend Technologies
+    with Zend OPcache v7.3.3-1+ubuntu18.04.1+deb.sury.org+1, Copyright (c) 1999-2018, by Zend Technologies
+    
 ## Methods
 ### Static call
 Method that found at legacy code by member of polish php community.
