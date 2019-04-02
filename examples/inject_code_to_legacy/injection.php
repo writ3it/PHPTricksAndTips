@@ -9,8 +9,6 @@
 // YOUR CODE GOES HERE
 
 //some example
-
-// or some improve
 $prefix = '/zmienna1/';
 $len = strlen($prefix);
 $uri = $_SERVER['REQUEST_URI'];

@@ -6,6 +6,6 @@
  * Time: 21:58
  */
 
-// THIS IS 3th PARTY CODE!!! DON"T CHANGE IT
+// THIS IS 3RD PARTY CODE!!! DON"T CHANGE IT
 
 var_dump($_SERVER["REQUEST_URI"]);
