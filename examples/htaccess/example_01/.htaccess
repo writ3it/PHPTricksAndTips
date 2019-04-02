@@ -1,0 +1,13 @@
+RewriteEngine on
+
+
+# safe way to match prefix
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} ^/zmienna1/
+RewriteRule (.*) index.php?test=zmienna1/zmienna99 [L]
+
+# and other cases
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) index.php?test=$1 [L]
